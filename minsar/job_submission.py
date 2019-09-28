@@ -141,7 +141,7 @@ def get_job_file_lines(job_name, job_file_name, email_notif, work_dir, scheduler
     job_file_lines = [
         "#! " + shell,
         prefix + name_option.format(job_name),
-        prefix + project_option.format(os.getenv('PROJECTNAME'))
+        prefix + project_option.format(os.getenv('JOBSHEDULER_PROJECTNAME'))
     ]
     if email_notif:
         job_file_lines.append(prefix + email_option.format(os.getenv("NOTIFICATIONEMAIL")))
@@ -175,7 +175,6 @@ def write_single_job_file(job_name, job_file_name, command_line, work_dir, email
     :param memory: Amount of memory to use. Defaults to 3600 KB.
     :param walltime: Walltime for the job. Defaults to 4 hours.
     :param queue: Name of the queue to which the job is to be submitted. Default is set based on the scheduler.
-    :param number_of_nodes: Number of nodes to preserve
     """
     if not scheduler:
         scheduler = os.getenv("JOBSCHEDULER")
